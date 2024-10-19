@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-size: 14px;
+        }
+
+
+        #container {
+            width: 100%;
+            height: 100%;
+            /* background: lightblue; */
+            font-family: "微軟正黑體";
+            margin: auto;
+        }
+
+        .title {
+            font-size: 16px;
+        }
+
+        #top {
+            width: 100%;
+            height: 7%;
+            position: fixed;
+            background: white;
+            margin: auto;
+            z-index: 1;
+        }
+
+        #top .icon {
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            border-radius: 50px;
+        }
+
+        #top .icon:hover {
+            cursor: pointer;
+            background: rgb(230, 230, 230);
+        }
+
+        #top .icon>i {
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        #top img {
+            position: absolute;
+            height: 60px;
+            left: 5%;
+        }
+
+        #center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 550px;
+            height: 40px;
+            border: 1px solid lightgray;
+            border-radius: 50px 0 0 50px;
+        }
+
+        #center input {
+            border: none;
+            width: 500px;
+            height: 25px;
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #888;
+        }
+
+        #center input:focus {
+            outline: none;
+        }
+
+        #search_icon {
+            position: absolute;
+            left: 64.5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 40px;
+            border: 1px solid lightgray;
+            border-radius: 0 50px 50px 0;
+            background: rgb(240, 240, 240);
+        }
+
+        #search_icon:hover {
+            background: rgb(230, 229, 229);
+            cursor: pointer;
+        }
+
+        #search_icon>i {
+            font-size: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #888;
+        }
+
+
+        #microphone {
+            width: 40px;
+            height: 40px;
+            background: rgb(240, 240, 240);
+            border-radius: 50px;
+            position: absolute;
+            left: 69%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #microphone:hover {
+            cursor: pointer;
+            background: rgb(230, 230, 230);
+        }
+
+        #microphone i {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+
+        #set i {
+            font-size: 20px;
+            position: absolute;
+            right: 6%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #set:hover {
+            cursor: pointer;
+        }
+
+        button {
+            width: 75px;
+            height: 35px;
+            border: 1px solid lightgray;
+            background: white;
+            border-radius: 50px;
+            position: absolute;
+            right: 1%;
+            top: 50%;
+            transform: translateY(-50%);
+
+        }
+
+        button:hover {
+            background: rgb(224, 239, 250);
+            cursor: pointer;
+        }
+
+        button i {
+            font-size: 16px;
+            position: absolute;
+            left: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgb(6, 95, 212);
+        }
+
+        button #text {
+            position: absolute;
+            left: 45%;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgb(6, 95, 212);
+        }
+
+
+
+        #left {
+            width: 15%;
+            height: 100%;
+            position: fixed;
+            /* background: lightpink; */
+            overflow-y: scroll;
+            top: 7%;
+            margin: auto;
+        }
+
+
+
+        #left table td {
+            width: 65%;
+            height: 40px;
+            position: relative;
+            left: 20px;
+            padding-left: 10px;
+        }
+
+
+        #left table td:hover {
+            border-radius: 10px;
+            background: lightgrey;
+            cursor: pointer;
+        }
+
+        #left td>i {
+            display: inline-block;
+            font-size: 16px;
+            color: black;
+            margin-right: 20px;
+
+
+        }
+
+        .line {
+            border-bottom: 2px solid lightgrey;
+
+        }
+
+        #right {
+            width: 85%;
+            height: 100%;
+            float: right;
+            /* background: wheat; */
+        }
+
+
+        #category {
+            position: fixed;
+            height: 5%;
+            width: 100%;
+            top: 7%;
+            z-index: 2;
+            background: white;
+        }
+
+        #category span {
+            position: relative;
+            top: 18%;
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 3px;
+            background: rgb(240, 240, 240);
+            border-radius: 5px;
+        }
+
+        #category span:hover {
+            background: rgb(230, 229, 229);
+            cursor: pointer;
+        }
+
+        #content {
+            position: relative;
+            width: 100%;
+            height: 95%;
+            top: 12%;
+            margin: auto;
+            /* background: rgb(255, 225, 255); */
+        }
+
+        .video {
+            float: left;
+            width: 20%;
+            height: 30%;
+            /* background: rgb(201, 255, 239); */
+            box-sizing: border-box;
+            border: 8px solid white;
+
+        }
+
+        .video:hover {
+            cursor: pointer;
+        }
+
+        .video>img {
+            width: 100%;
+            height: 67%;
+            border-radius: 10px;
+
+        }
+
+        .video .info {
+            width: 100%;
+            height: 35%;
+            margin-top: 5px;
+            /* background: lightgrey; */
+        }
+
+        .video .icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 15px;
+        }
+
+        .video.text {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="top">
+            <div class="icon"><i class="fa-solid fa-bars"></i></div>
+            <div><a href="./index.html"><img src="https://logodix.com/logo/4028.jpg" alt=""></a></div>
+            <div id="center">
+                <input type="text" id="search" placeholder="搜尋">
+            </div>
+            <div id="search_icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div id="microphone"><i class="fa-solid fa-microphone"></i></div>
+            <div id="set"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+            <button>
+                <i class="fa-solid fa-user-large"></i>
+                <div id="text">登入</div>
+            </button>
+        </div>
+        <div id="left">
+            <table>
+                <tr>
+                    <td><i class="fa-solid fa-house"></i>首頁</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-bolt"></i>Shorts</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-regular fa-square-caret-right"></i>訂閱內容</td>
+                </tr>
+                <tr>
+                    <td class="line"><i class="fa-regular fa-circle-play"></i>YouTube Music</td>
+                </tr>
+                <tr>
+                    <td class="title">你的內容 &gt</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-clock-rotate-left"></i>觀看紀錄</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-regular fa-clock"></i>稍後觀看</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-regular fa-circle-down"></i>已下載的內容</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-regular fa-thumbs-up"></i>喜歡的影片</td>
+                </tr>
+                <tr>
+                    <td class="title">探索</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-fire"></i>發燒影片</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-music"></i>音樂</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-film"></i>電影</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-tower-broadcast"></i>直播</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-gamepad"></i>遊戲</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-newspaper"></i>新聞</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-trophy"></i>體育</td>
+                </tr>
+                <tr>
+                    <td class="line"><i class="fa-solid fa-podcast"></i>Podcast</td>
+                </tr>
+                <tr>
+                    <td class="title">更多 YouTube 功能</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-headphones"></i>YouTube Music</td>
+                </tr>
+                <tr>
+                    <td class="line"><i class="fa-brands fa-youtube"></i>YouTube Kids</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-gear"></i>設定</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-regular fa-flag"></i>檢舉紀錄</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-regular fa-circle-question"></i>說明</td>
+                </tr>
+                <tr>
+                    <td class="line">提供意見</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>簡介</span>
+                        <span>媒體</span>
+                        <span>著作權</span>
+                        <span>與我們聯絡</span>
+                        <span>創作者</span>
+                        <span>廣告</span>
+                        <span>開發人員</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>條款</span>
+                        <span>隱私權</span>
+                        <span>政策與安全性</span>
+                        <span>Youtube運作方式</span>
+                        <span>測試新功能</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>© 2024 Google LLC</td>
+                </tr>
+            </table>
+
+
+        </div>
+        <div id="right">
+            <div id="category">
+                <span>全部</span>
+                <span>音樂</span>
+                <span>直播中</span>
+                <span>新聞</span>
+                <span>合輯</span>
+                <span>遊戲</span>
+                <span>寵物</span>
+                <span>動畫</span>
+                <span>觀光</span>
+                <span>烹飪</span>
+                <span>最新上傳</span>
+                <span>已觀看</span>
+                <span>讓你耳目一新的影片</span>
+            </div>
+            <div id="content">
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/vDNw0FWL8zw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHn8unXnfJ0XiL20NwTgFcLJqwug">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/qYMuwcLTlRrT3nrlGQvCJdCxIBz5Mf8ygppAVjGY0lifN5v6ijdhVzM6TQCO84Bp8zB9Hna0=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">【3小時JavaScript快速入門】從零基礎到開發第一個應用</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/H6FUBWGSOIc/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBnm6AI3a5fDgI5NZLdJ03KH0k8Fg" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/1-Yyk77QAiwVPKy8zPwkT6jNbCD7ycX2iwOWujGUWGKJr-o5PyQnav24qe5-V628FYBu7Tgs3w=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">Creepy Nuts - Bling‐Bang‐Bang‐Born / THE FIRST TAKE</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/wzIj479b8dU/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDwu50jrWxN8RVJLlYlHr_RxzOWUw" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/ytc/AIdro_k5weeys-JIzhPUbjbSNps_LMWc5nP5fyjd-m4m8xuGAtM=s48-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">【好味Podcast精華#162】你怎麼猜的到？？？</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/BAXbjza6oWA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBOeo17lvPxvha_Mr7gMwLxi0dI5Q" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.googleusercontent.com/ytc/AIdro_kVUNaNKDQTpfRmiT13oelULSfwm2WaEwXyQ2gW5oz-5L8=s176-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">6名囚犯在嚴密看守下計劃越獄，方法令人意想不到，逃離西部監獄 | X調查</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/UK81GCw1KE8/hq720_live.jpg?sqp=CMTJu7AG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDYufmSddIcpK-Fd3taTJxeBIhHlw" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/V5mmM1zyMzwYeeFmYDvsIUnZ3DZ6GgC5J0TYUP4-QjA6LpmNU03st76cjmyzxFE07o_z-PmHCw=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">《我們這一家》每天不間斷 馬拉松直播｜Muse木棉花 闔家歡</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/fcNrpDlkBIc/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBMPQAtKCtz5BdpbkZUnC6KsjuW-A" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/jmb-0LnNzuneBWKY4oTsOFCWxMC-XzsfdQVjuPZx3OSgeLhs2oOd7jbMjvfNVucV_5AunDF0kA=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">Smooth Jazz Instrumental Music ☕ Cozy Coffee Shop Ambience ~ Jazz Relaxing Music for Study, Unwind</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/h7A8wYwdtd4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDUkhlL7iPuLsTbcAHy1cR8z2gTjQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/vIAuATDhSuCt-nKBVoKqfOssNkn4CQbuWyBwhnabtmzU5cG2R6yRfYjmFFb6bjkd942PCYmtSOQ=s68-c-k-c0x00ffffff-no-rj-mo" alt=""></div>
+                        <div class="text">日幣是匯率低但不是不用錢耶？可是大阪四天真的省好多🍢【日幣當台幣刷】｜HOOK ft. 全支付</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/qz_Y_E0e1_M/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBK8mlNSH2fki48MriM-TfAP03XbQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/0F4bP75xh5jpDkC4HrPAEos6ZTnjvM7UrSLPK3JTOsIQHaehRUoce-jFpHsa5dqukc1CDvKG9II=s68-c-k-c0x00ffffff-no-rj-mo" alt=""></div>
+                        <div class="text">女友變胖該說出來嗎｜男生變帥的成本很低｜公司尾牙超爛【EP170】Dcard尋奇｜Dcard.Video</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/UAhLLkDo5gA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDcbkPaBxDRFhsMPX1hQvjamlb0iQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.googleusercontent.com/ytc/AIdro_nRZ2vp1cVGjuxa0RoTVN9Z6dPgwDS2VJmoLPG3FlPVDMeT=s68-c-k-c0x00ffffff-no-rj-mo" alt=""></div>
+                        <div class="text">Onion Man | 洋蔥的中二丟臉回憶(三) 龍珠篇</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/F64yFFnZfkI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA64M6RfdtL9HaO0iWtrbXZUBjsIQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/ytc/AIdro_kVKEa-EG-3DL3jnIwzZ13S4zo8G57by8Gq-nJLBOcuqg=s48-c-k-c0x00ffffff-no-rj-mo" alt=""></div>
+                        <div class="text">ヨルシカ - 說吧。</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/ehTuatSx5Wc/hqdefault_live.jpg?sqp=CMjQu7AG-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAFTh79F22EBG8ns-aM30rHG7DdvQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/NrIEzYVk5mBH9yRIefVDnvyD7YQpvbmOUx-LRNaC7KCc1DQ82B-bvURmZbEhZoCllobJjCBq=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">jazz/lofi hip hop radio🌱chill beats to relax/study to [LIVE 24/7]</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/yvdvpL8foE4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDCz2epBHT0NUC4AUNzls5j_iMAEA" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.googleusercontent.com/ytc/AIdro_kDOHE4NoyCCL_iB4u4eS3VdZ1kIyJt9jtb1u6sCOkq7hg=s68-c-k-c0x00ffffff-no-rj-mo" alt=""></div>
+                        <div class="text">駕照筆試會考左右擺頭？瘋狂停車幫助隊友！「他是手機玩家，他躲不了！」│跑跑卡丁車：飄移【爆哥Neal】</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/stHSxBClKbk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDt7Gfs-k8nRaNLvjKsTbnOJNzQag" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/bOXrCaT-2TGHMgR6PimIuRviTQTvhczKuexaTCFlQHhndCHbWtMGM9mjj4YRI1SsZphwKVe2ow=s48-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">PLG LIVE GAME 23-24｜240405｜1700｜福爾摩沙夢想家 vs 桃園璞園領航猿</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/d-rv3Kx3554/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBU9wjqAtaQ9wk_Fy0O5inmCReocA" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/McoEEWDTf6tdYsVzdYIAuyT4RaEAoDIXUNKbiqPb3urb9palXTpE5S7t3XTYS_FOyBhW_1ZcQTU=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">我潛入了股票報牌群組3個月！詐騙手法一次全解碼！【好棒Bump】【詐騙解碼】</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/yZwlW5INhgk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBaGuXJSgcxYnnVZqfTIoE2b_ky7A" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/kUaRemmO8oVA1ygqlHodGLwCVztWHpLCd9Cic3KU3lKwjtu3xenO1bucdEPv3nZ1O4LAdMLxfig=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">【javascript】3小時初學者教學 #js #javascript教學 #javascript入門</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/p1loCdDjMe4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBrC7ZWIQdB9NANdCRio5iTAP3ypQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/ytc/AIdro_kbVikAYaoOp_0jMt8qIhPFDgLc3F6wxzhMGWb4jAy9tdk=s48-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">【豆漿 - SoybeanMilk】規模7.2大地震 豆漿被嚇到喘不過氣...</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/ntvF__N8Aus/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBbxP7Nn1MsuTNFmlYyncLIGyn3DA" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.googleusercontent.com/ytc/AIdro_nsiJVjzDfl117WVVApnKiyVJirCgTExjajeCM9LqT8GFM=s68-c-k-c0x00ffffff-no-rj-mo" alt=""></div>
+                        <div class="text">【露營出大事】上山露營驚天凍地！前所未見出大事｜反正我很閒</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/8iuLXODzL04/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCJoVvPw_HkLeuMN154BJCRDoqAlg" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/ytc/AIdro_nMWGqyr97pm_Gwii1PfkXIYJd4QYOiMP779zRdYQh49II=s48-c-k-c0x00ffffff-no-rj-mo" alt=""></div>
+                        <div class="text">YOASOBI「たぶん(或許吧)」Official Music Video</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/N8BWAi4iRsQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC9VxBotDUYSz3osbG0G4REYj_gTA" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/DGwb11LSQ4YNT4KqlW7QOLWSb7I82skbMU9UX4bxl02a-_StFwUtIcS1NJG9fe3BDVXUqBqQVg=s68-c-k-c0x00ffffff-no-rj" alt=""> </div>
+                        <div class="text">【猫ミーム】進撃の巨猫　第２話</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/Z38MDD9cNlM/hq720_live.jpg?sqp=CLyKw7AG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCWKG_ErYiDR26nJ3uVPUGBo_Ufkw" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/jWe-dwGiiNd26ijxazm7ZTmbbObYF0e-HJntH2d_YtMM4M-vLKfoSb9Wj1NA6NOUk6KfsG2IsA=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">【LIVE】連夜拆除天王星大樓 水塔.基地台全無</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/3MHPosEv5L8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAErzXr9a7Ar_cA-iJheI6PkBho5g" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/MgUUfakuPNCj-v1NbBUxzTNdxxVy1DdxN_IhSUHK-_uKdkJhE_XKoEIGmN6GRxVX4UEjyX72=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">從芬蘭隨機帶路人回台灣！美食之都合芬蘭人的胃口嗎？！</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/yjpe4RuPuEk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDaae_J7sMgEew60S2Cv7mXVcnwPw" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/uatGeksgPgGSnGqb3Rg4TM-tUZuIczqtAe8SkKpB1iokAQmL8bT-RY8lHCLfaGludDO_0o78=s48-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">血液O型爸媽生出A型的小孩!??一場誤會釀成大禍</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/bsPXlWwN70E/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBIVy289Syr9-hk5Tj1UWL7wcNGgQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/ytc/AIdro_ldRRnOosyjrin3RcA8WDMcr2UVW_sVjXA7X5gSHr0TiA=s48-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">【鹿人泥鰍劇場】第一次去做高級spa就不敢再去了！糗態百出！｜真實故事｜</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/G-Ks1XYGyaY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAZjQdOeZ5JPwnVPbiT8gx3OKrHWQ" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/qYMuwcLTlRrT3nrlGQvCJdCxIBz5Mf8ygppAVjGY0lifN5v6ijdhVzM6TQCO84Bp8zB9Hna0=s68-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">前端、後端、資料庫是什麼？它們如何溝通？實際範例解說</div>
+                    </div>
+                </div>
+                <div class="video">
+                    <img src="https://i.ytimg.com/vi/3hLESh77fSg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATd5AKroho79qbCEjwT03VLn_T9g" alt="">
+                    <div class="info">
+                        <div class="icon"><img src="https://yt3.ggpht.com/cuXigNoRRYIUnnwHXYzmn0oHLy9ymZBLuQqj9AGKNy5c481Myd_hjQjc1vWBS3OkkPSKIERIjF4=s88-c-k-c0x00ffffff-no-rj" alt=""></div>
+                        <div class="text">理想混蛋 Bestards【離開的一路上 Farewell】Official Music Video</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
